@@ -3,6 +3,7 @@
 /*
 Plugin Name: NasaGallery
 Description: Галерея с сайта NASA.
+Plugin URI:  https://github.com/pahaa97/NASA_Gallery
 Version: 1.0
 Author: Pavel Fedotov
 */
@@ -11,7 +12,6 @@ require_once('settings/settings.php');
 require_once('settings/shortcodes.php');
 require_once('models/NASA.php');
 require_once('models/Post.php');
-//FFFFFF
 
 add_action( 'init' , 'nasagallery_setup_post_types' );
 register_activation_hook( __FILE__, 'nasagallery_install' );
