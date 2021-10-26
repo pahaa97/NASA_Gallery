@@ -13,15 +13,16 @@ require_once('settings/shortcodes.php');
 require_once('models/NASA.php');
 require_once('models/Post.php');
 
-add_action( 'init' , 'nasagallery_setup_post_types' );
+
+
 register_activation_hook( __FILE__, 'nasagallery_install' );
 register_deactivation_hook( __FILE__, 'nasagallery_deactivation');
-add_action( 'my_everyday_event', 'get_everyday_post' );
 
+add_action( 'init' , 'nasagallery_setup_post_types' );
+add_action( 'my_everyday_event', 'get_everyday_post' );
 add_action('wp_head', 'my_wp_head_css' );
 
-
-add_shortcode( 'nasa_gallery' , nasa_gallery_func );
+add_shortcode( 'nasa_gallery' , 'nasa_gallery_func' );
 
 
 

@@ -1,7 +1,5 @@
 <?php
 
-include_once(__DIR__.'../models/Post.php');
-include_once(__DIR__.'../models/NASA.php');
 require_once('nasacron.php');
 require_once('shortcodes.php');
 
