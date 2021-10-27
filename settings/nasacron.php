@@ -10,7 +10,7 @@ function cron_nasa() {
     wp_clear_scheduled_hook( 'my_everyday_event' );
 
     $today = date('Y-m-d');
-    $date_start = strtotime($today . ' 09   :00:00');
+    $date_start = strtotime($today . ' 09:00:00');
 
     get_everyday_post();
     // добавим новую cron задачу
@@ -26,7 +26,7 @@ function get_everyday_post() {
 
     if ( $post_content_wp[0]->post_title != $post_content_nasa->date )
     {
-        $post_id = $post_wp->add_post($post_content_nasa->date, '$post_content_nasa->url' );
+        $post_id = $post_wp->add_post( $post_content_nasa->date, $post_content_nasa->url );
         return $post_id;
     }
 }
