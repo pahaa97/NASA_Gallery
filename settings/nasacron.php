@@ -11,8 +11,8 @@ function cron_nasa() {
 
     $today = date('Y-m-d');
     $date_start = strtotime($today . ' 09:00:00');
+    //error_log( print_r( time(), 1) );
 
-    get_everyday_post();
     // добавим новую cron задачу
     wp_schedule_event( $date_start, 'daily', 'my_everyday_event');
 }
@@ -23,11 +23,12 @@ function get_everyday_post() {
 
     $post_content_wp = $post_wp->get_last_post();
     $post_content_nasa = $post_nasa->last_post();
-
-    if ( $post_content_wp[0]->post_title != $post_content_nasa->date )
+    //error_log( print_r( $post_content_nasa, 1) );
+    if ( $post_content_wp != null )
     {
-        $post_id = $post_wp->add_post( $post_content_nasa->date, $post_content_nasa->url );
-        return $post_id;
+        if ( $post_content_wp[0]->post_title != $post_content_nasa->date ) {
+            return $post_wp->add_post( $post_content_nasa );
+        }
     }
 }
 

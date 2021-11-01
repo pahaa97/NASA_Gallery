@@ -27,18 +27,14 @@ class NASA
 
     public function last_post()
     {
-        $result = $this->get_from_nasa();
-        return $result;
+        return $this->get_from_nasa();
     }
 
     public function get_last_five_post()
     {
-        $end_date = $this->last_post_date;
-        $start_date = date("Y-m-d", strtotime($end_date.'- 5 days'));
+        $end_date = $this->last_post->date;
+        $start_date = date("Y-m-d", strtotime($end_date.'- 4 days'));
 
-        $result = $this->get_from_nasa($start_date, $end_date);
-
-        return $result;
+        return $this->get_from_nasa($start_date, $end_date);
     }
-
 }

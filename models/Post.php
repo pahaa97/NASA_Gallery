@@ -13,9 +13,7 @@ class Post
             $last_five_posts_nasa = $nasa->get_last_five_post();
             foreach ($last_five_posts_nasa as $post)
             {
-                $post_name = $post->date;
-                $post_img = $post->url;
-                $this->add_post($post_name, $post_img);
+                $this->add_post($post);
             }
         }
     }
@@ -30,7 +28,7 @@ class Post
             'post_status'       => 'publish'
         );
 
-        return $recent_post = get_posts( $params );;
+        return get_posts( $params );;
     }
 
 
@@ -69,11 +67,11 @@ class Post
         <?php
     }
 
-    public function add_post($date, $image)
+    public function add_post($post)
     {
         $post_data = array(
-            'post_title'    => $date,
-            //'post_content'  => null,
+            'post_title'    => $post->date,
+            'post_content'  => $post->title . "\n" . $post->explanation,
             'post_status'   => 'publish',
             'post_author'   => 1,
             'post_type'     => 'post-nasa-gallery'
@@ -81,7 +79,7 @@ class Post
 
         // Вставляем запись в базу данных
         $post_id = wp_insert_post( $post_data );
-        $media_id = media_sideload_image( $image, $post_id, null, 'id');
+        $media_id = media_sideload_image( $post->url, $post_id, null, 'id');
         set_post_thumbnail( $post_id, $media_id );
         return $post_id;
     }
